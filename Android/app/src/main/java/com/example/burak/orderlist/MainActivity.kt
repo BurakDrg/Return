@@ -18,11 +18,11 @@ import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.list_layout.*
 import android.support.v4.view.ViewPager
+import android.support.v7.widget.DividerItemDecoration
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,  View.OnClickListener, ViewPager.OnPageChangeListener {
 
-    val animals: ArrayList<String> = ArrayList()
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
     var prevMenuItem: MenuItem? = null
 
@@ -42,8 +42,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.setNavigationItemSelectedListener(this)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         viewPager.addOnPageChangeListener(this)
-
-        addItem.setOnClickListener(this)
     }
 
     override fun onBackPressed() {
@@ -97,13 +95,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-    override fun onClick(v: View) {
-        when (v.id) {
-            R.id.addItem -> {
-                animals.add("dog")
-                animals.add("dog")
-                recyclerView.layoutManager = LinearLayoutManager(this)
-            }
+    override fun onClick(v: View?) {
+        println("Geldi2")
+        when (v?.id) {
+            /*R.id.addItem -> {
+                println("Geldi3")
+                //rvAdapter.addItem("New item")
+
+            }*/
         }
     }
 
@@ -149,11 +148,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         override fun getItem(position: Int): Fragment? {
 
-            var fragment: Fragment? = List()
+            var fragment: Fragment? = null
 
-            if(position == 0) fragment = List()
+            if(position == 0) fragment = AddItem()
             else if(position == 1) fragment = List()
-            else if(position == 2) fragment = List()
+            else if(position == 2) fragment = Profile()
 
             return fragment
         }
