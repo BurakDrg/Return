@@ -22,6 +22,9 @@ The main purpose is to obtain the desired list from the nearest convenience stor
 On the other hand, carriers can also introduce themselves in the system by delivering the prepared orders.
 Project supported on web and android devices.
 
+You may follow the progress via google docs
+https://docs.google.com/document/d/1WCcJrb5lwXdaKIwng_lc14NfGN9-ddio9dozfdaQ-I8/edit?ts=5c3b6dd8
+
 Features
 
 -As a user,I would like to able to set a shopping list and order via web and android devices.
