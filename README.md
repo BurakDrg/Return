@@ -10,8 +10,11 @@ Project developed by Return team.
 Members:
 
 Burak Durgunsu
+
 Baran Berk Bacalan
+
 Canberk Sakarya
+
 Utku Çuhadaroğlu
 
 OrderList has been designed to facilitate grocery shopping.
