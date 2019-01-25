@@ -1,5 +1,32 @@
+<h2>Marketler, Seçilen Market: {{selectedMarket.name}} </h2>
+<h2>Kullanıcı pozisyonu(x,y): {{userPosition.coords.latitude}} , {{userPosition.coords.longitude}} </h2>
 
-  <h2>{{map.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{map.id}}</div>
-  <div><span>name: </span>{{map.name}}</div>
+<ul class="locations">
+  <li *ngFor="let market of Marketler" 
+  (click) = "onSelect(market)" 
+  [class.selected] = "market === selectedMarket">
+    <span class="badge">{{market.id}}</span> {{market.name}}
+  </li>
+</ul>
+
+
+<div *ngIf= "selectedMarket">
+  <h2>{{selectedMarket.name | uppercase}} Marketi Detayları</h2>
+  <div><span>Market: </span>{{selectedMarket.name}}</div>
+  <div><span>Lokasyon(x,y,z): </span>{{selectedMarket.x}}, {{selectedMarket.y}}, {{selectedMarket.z}}</div>
+
+  <div>
+    <label>İsim değiştir:
+      <input [(ngModel)]="selectedMarket.name" placeholder="name">
+    </label>
+  </div>
+
+
+
+
+</div>
+
+
+
+
 
