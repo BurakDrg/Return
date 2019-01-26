@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">kurye</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_siparis_listesi">siparis_listesi</string>
+    <string name="title_activity_siparis_detay">siparis_detay</string>
+    <string name="title_activity_ana_sayfa">ana_sayfa</string>
+</resources>
