@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
     val ft = supportFragmentManager.beginTransaction()
 
     companion object {
-        val serverurl = "http://192.168.1.23:8080/api/product"
+        val serverurl = "http://localhost:8080/api/product"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

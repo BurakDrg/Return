@@ -67,11 +67,6 @@ public class ProjectApplication  implements CommandLineRunner{
 		p37.Price(263.5000);
 		p37.Stock(17);
 
-		Product p38=new Product();
-		p38.Name("Côte de Blaye");
-		p38.Price(263.5000);
-		p38.Stock(17);
-
 		Set<Product> products=new HashSet<>();
 		products.add(p1);
 		products.add(p2);
@@ -80,7 +75,6 @@ public class ProjectApplication  implements CommandLineRunner{
 		products.add(p35);
 		products.add(p36);
 		products.add(p37);
-		products.add(p38);
 
 		productRepository.saveAll(products);
 	}
