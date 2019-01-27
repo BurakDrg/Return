@@ -3,7 +3,6 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
@@ -33,23 +32,13 @@
     </form>
   </div>
 </nav>
-<div style="text-align:center">
-  <h1>
-    {{ title }}
-    Coming Soon !
-  </h1>
-  <h1>
-    Please select the page you would like to access
-  </h1>
- 
-  <div class="btn-group-lg" role="group" aria-label="Basic example">
-    <button type="button" class="btn btn-secondary">Courier</button>
-    <button type="button" class="btn btn-secondary">Market</button>
-    <button type="button" class="btn btn-secondary">User</button>
-  </div>
-
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <app-category></app-category>
+    </div>
+    <div class="col-md-10">
+      <router-outlet></router-outlet>
+    </div>
+    </div>
 </div>
-
-
-
-<router-outlet></router-outlet>
