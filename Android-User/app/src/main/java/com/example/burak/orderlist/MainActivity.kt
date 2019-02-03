@@ -1,5 +1,6 @@
 package com.example.burak.orderlist
 
+import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -13,12 +14,24 @@ import com.example.burak.orderlist.Pages.Order
 import com.example.burak.orderlist.Pages.Profile
 import com.example.burak.orderlist.Pages.ShoppingCart
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.BufferedReader
+import java.io.InputStream
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
+import android.util.JsonReader
+import org.json.JSONObject
+
 
 class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
 
     var mSectionsPagerAdapter: SectionsPagerAdapter? = null
     var prevMenuItem: MenuItem? = null
     val ft = supportFragmentManager.beginTransaction()
+
+    companion object {
+        val serverurl = "http://192.168.1.23:8080/api/product"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -27,6 +40,8 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         ft.replace(R.id.container, Order()).commit()
+
+        ServerCommunication().execute(serverurl)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -90,6 +105,7 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
         override fun getItem(position: Int): Fragment? {
 
             var fragment: Fragment? = null
+            setContentView(R.layout.activity_main)
 
             if(position == 0) fragment = Order()
             else if(position == 1) fragment = ShoppingCart()
@@ -103,4 +119,60 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
             return 3
         }
     }
+
+    inner class ServerCommunication : AsyncTask<String, String, String>() {
+
+        override fun onPreExecute() {
+            // Before doInBackground
+        }
+
+        override fun doInBackground(vararg urls: String?): String? {
+
+            var connection: HttpURLConnection? = null
+            try {
+                val url = URL(urls[0])
+
+                connection = url.openConnection() as HttpURLConnection
+                connection.requestMethod = "GET"
+                var inString = translate(connection.inputStream)
+                publishProgress(inString)
+            } catch (ex: Exception) {
+            } finally {
+                if (connection != null) {
+                    connection.disconnect()
+                }
+            }
+
+            return " "
+        }
+    }
+
+    fun translate(inputStream: InputStream): String {
+        val reader = JsonReader(InputStreamReader(inputStream));
+        var id:Long
+        var name:String = ""
+        var stock:Int
+        var price:Double
+
+        reader.beginArray()
+        while (reader.hasNext()) {
+            reader.beginObject()
+            while (reader.hasNext()) {
+                when (reader.nextName()) {
+                    "id" -> id = reader.nextLong()
+                    "name" -> name = reader.nextString()
+                    "stock" -> stock = reader.nextInt()
+                    "price" -> price = reader.nextDouble()
+                    else -> reader.skipValue()
+
+                }
+                println("Burda => " + name)
+            }
+            reader.endObject()
+        }
+
+        return name
+    }
 }
+class Product(val id: Long, val name: String, val age: Int = -1)
+
