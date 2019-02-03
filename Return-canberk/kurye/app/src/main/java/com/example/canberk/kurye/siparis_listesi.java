@@ -15,7 +15,7 @@ public class siparis_listesi extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kurye_profil);
+        setContentView(R.layout.s_listesi);
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
 
         Menu menu = bottomNavigationView.getMenu();
@@ -28,17 +28,17 @@ public class siparis_listesi extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
 
                     case R.id.navigation_dashboard:
-                        Intent intent1 = new Intent(siparis_listesi.this, ana_sayfa.class);
+                        Intent intent1 = new Intent(siparis_listesi.this, siparis_listesi.class);
                         startActivity(intent1);
                         break;
 
                     case R.id.navigation_notifications:
-                        Intent intent2 = new Intent(siparis_listesi.this, siparis_listesi.class);
+                        Intent intent2 = new Intent(siparis_listesi.this, siparis_detay.class);
                         startActivity(intent2);
                         break;
 
                     case R.id.navigation_home:
-                        Intent intent3 = new Intent(siparis_listesi.this, siparis_detay.class);
+                        Intent intent3 = new Intent(siparis_listesi.this, ana_sayfa.class);
                         startActivity(intent3);
                         break;
 
