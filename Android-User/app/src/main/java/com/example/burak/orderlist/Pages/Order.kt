@@ -1,24 +1,39 @@
 package com.example.burak.orderlist.Pages
 
 import android.app.Activity
+import android.graphics.BitmapFactory
+import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
 import android.support.design.widget.TextInputLayout
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat.getSystemService
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory
 import com.example.burak.orderlist.R
 import kotlinx.android.synthetic.main.page_order.*
 import android.support.v4.os.HandlerCompat.postDelayed
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.util.JsonReader
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import com.example.burak.orderlist.Items.Profile_RvAdapter
+import com.example.burak.orderlist.MainActivity
+import java.io.InputStream
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
 
 
 class Order : Fragment(), View.OnClickListener, TextView.OnEditorActionListener{
 
     companion object {
         var searchtext : String = ""
+        val rvAdapter = Profile_RvAdapter(("").map {""}.toMutableList())
+        val serverurl = "http://192.168.1.23:8080/api/product"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -37,6 +52,14 @@ class Order : Fragment(), View.OnClickListener, TextView.OnEditorActionListener{
         searchbar.setOnClickListener(this)
         searchbar.setOnEditorActionListener(this)
         closesearch.setOnClickListener(this)
+
+        val recyclerview = rootView.findViewById(R.id.recyclerOrder) as RecyclerView
+
+        recyclerview.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+        recyclerview.layoutManager = LinearLayoutManager(activity)
+        recyclerview.adapter = rvAdapter
+
+        ServerCommunication().execute(serverurl)
 
         return rootView
     }
@@ -76,4 +99,60 @@ class Order : Fragment(), View.OnClickListener, TextView.OnEditorActionListener{
         }
         return false
     }
+
+    inner class ServerCommunication : AsyncTask<String, String, String>() {
+
+        override fun onPreExecute() {
+            // Before doInBackground
+        }
+
+        override fun doInBackground(vararg urls: String?): String? {
+
+            var connection: HttpURLConnection? = null
+            try {
+                val url = URL(urls[0])
+
+                connection = url.openConnection() as HttpURLConnection
+                connection.requestMethod = "GET"
+                var inString = translate(connection.inputStream)
+                publishProgress(inString)
+            } catch (ex: Exception) {
+            } finally {
+                if (connection != null) {
+                    connection.disconnect()
+                }
+            }
+
+            return " "
+        }
+    }
+
+    fun translate(inputStream: InputStream): String {
+        val reader = JsonReader(InputStreamReader(inputStream));
+        var id:Long
+        var name:String = ""
+        var stock:Int
+        var price:Double
+
+        reader.beginArray()
+        while (reader.hasNext()) {
+            reader.beginObject()
+            while (reader.hasNext()) {
+                when (reader.nextName()) {
+                    "id" -> id = reader.nextLong()
+                    "name" -> name = reader.nextString()
+                    "stock" -> stock = reader.nextInt()
+                    "price" -> price = reader.nextDouble()
+                    else -> reader.skipValue()
+                }
+            }
+            println("Burda => " + name)
+            rvAdapter.addItem(name)
+            reader.endObject()
+        }
+
+        return name
+    }
+
 }
+class Product(val id: Long, val name: String, val age: Int = -1)
