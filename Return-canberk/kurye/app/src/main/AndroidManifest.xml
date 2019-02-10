@@ -29,7 +29,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAz5I5gaLuGfo5U_0Mn1UNkQ_-2chsNcxI" />
+            android:value="*****************************************" />
 
         <activity
             android:name=".ana_sayfa"
