@@ -9,6 +9,7 @@ import { ProductComponent } from './product/product.component';
 import { CategoryComponent } from './category/category.component';
 import { CartComponent } from './cart/cart.component';
 import { DenemeComponent } from './deneme/deneme.component';
+import { ProductService } from './product/product.service';
 
 
 
@@ -25,7 +26,7 @@ import { DenemeComponent } from './deneme/deneme.component';
       AppRoutingModule,
       HttpClientModule
    ],
-   providers: [],
+   providers: [ProductService],
    bootstrap: [
       AppComponent
    ]

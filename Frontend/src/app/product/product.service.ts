@@ -12,7 +12,7 @@ export class ProductService {
   baseURL: string;
 
   constructor(private http: HttpClient) {
-    this.baseURL="http://northwindapi.azurewebsites.net/api/products";
+    this.baseURL="http://localhost:8080/api/product";
   }
 
 
