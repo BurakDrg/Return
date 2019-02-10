@@ -29,8 +29,6 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
     var prevMenuItem: MenuItem? = null
     val ft = supportFragmentManager.beginTransaction()
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)

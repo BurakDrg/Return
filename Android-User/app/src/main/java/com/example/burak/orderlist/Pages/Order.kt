@@ -20,7 +20,7 @@ import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
-import com.example.burak.orderlist.Items.Profile_RvAdapter
+import com.example.burak.orderlist.Items.Order_RvAdapter
 import com.example.burak.orderlist.MainActivity
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -32,21 +32,22 @@ class Order : Fragment(), View.OnClickListener, TextView.OnEditorActionListener{
 
     companion object {
         var searchtext : String = ""
-        val rvAdapter = Profile_RvAdapter(("").map {""}.toMutableList())
+        var rvAdapter = Order_RvAdapter(("").map {""}.toMutableList())
         val serverurl = "http://192.168.1.23:8080/api/product"
+        var counter = 0;
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.page_order, container, false)
-
         val editlayout = rootView.findViewById<LinearLayout>(R.id.edit_layout)
         val searchbar = editlayout.findViewById<EditText>(R.id.search_bar)
         val closesearch = rootView.findViewById<ImageButton>(R.id.close_search)
 
+
         searchbar.isCursorVisible = false
         searchbar.requestFocus()
         searchbar.setText(searchtext)
-        //searchbar.setPadding(70.dp,0,130,0) ₺
+
         if (!searchtext.isEmpty()) searchbar.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
 
         searchbar.setOnClickListener(this)
@@ -59,7 +60,9 @@ class Order : Fragment(), View.OnClickListener, TextView.OnEditorActionListener{
         recyclerview.layoutManager = LinearLayoutManager(activity)
         recyclerview.adapter = rvAdapter
 
-        ServerCommunication().execute(serverurl)
+        if(counter == 0) ServerCommunication().execute(serverurl)
+
+        counter++
 
         return rootView
     }
@@ -94,7 +97,6 @@ class Order : Fragment(), View.OnClickListener, TextView.OnEditorActionListener{
             close_search.visibility = View.INVISIBLE
             search_bar.isCursorVisible = false
             inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
-            ShoppingCart.rvAdapter.addItem(search_bar.text.toString())
             return true
         }
         return false
@@ -132,7 +134,7 @@ class Order : Fragment(), View.OnClickListener, TextView.OnEditorActionListener{
         var id:Long
         var name:String = ""
         var stock:Int
-        var price:Double
+        var price:String = ""
 
         reader.beginArray()
         while (reader.hasNext()) {
@@ -142,12 +144,12 @@ class Order : Fragment(), View.OnClickListener, TextView.OnEditorActionListener{
                     "id" -> id = reader.nextLong()
                     "name" -> name = reader.nextString()
                     "stock" -> stock = reader.nextInt()
-                    "price" -> price = reader.nextDouble()
+                    "price" -> price = reader.nextString()
                     else -> reader.skipValue()
                 }
             }
             println("Burda => " + name)
-            rvAdapter.addItem(name)
+            rvAdapter.addItem(name + ":" + price)
             reader.endObject()
         }
 
@@ -155,4 +157,4 @@ class Order : Fragment(), View.OnClickListener, TextView.OnEditorActionListener{
     }
 
 }
-class Product(val id: Long, val name: String, val age: Int = -1)
+class Product(val name: String, val price: String)
