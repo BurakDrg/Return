@@ -12,7 +12,6 @@ import { DenemeComponent } from './deneme/deneme.component';
 import { ProductService } from './product/product.service';
 
 
-
 @NgModule({
    declarations: [
       AppComponent,
@@ -26,7 +25,7 @@ import { ProductService } from './product/product.service';
       AppRoutingModule,
       HttpClientModule
    ],
-   providers: [ProductService],
+   providers: [],
    bootstrap: [
       AppComponent
    ]
