@@ -3,4 +3,5 @@ export class Product {
     sku: number;
     price: number;
     image: string;
+    market: string;
   }
