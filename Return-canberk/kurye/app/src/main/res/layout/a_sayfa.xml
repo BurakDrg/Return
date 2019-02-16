@@ -9,14 +9,15 @@
 
     <TextView
         android:id="@+id/message"
-        android:layout_width="85dp"
-        android:layout_height="44dp"
-        android:layout_marginLeft="160dp"
-        android:layout_marginTop="340dp"
-        android:text="@string/title_home"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginEnd="172dp"
+        android:text="@string/ana_sayfa"
+        app:layout_constraintBottom_toTopOf="@+id/navigation"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Ana Sayfa" />
+        app:layout_constraintVertical_bias="0.415" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
@@ -28,6 +29,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:itemIconTint="@drawable/bottom_navigation_color_selector"
+        app:itemTextColor="@drawable/bottom_navigation_color_selector"
         app:menu="@menu/navigation" />
 
 </android.support.constraint.ConstraintLayout>

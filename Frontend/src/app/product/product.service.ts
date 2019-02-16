@@ -3,16 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Product } from './product';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
-
+@Injectable()
 export class ProductService {
 
   baseURL: string;
 
   constructor(private http: HttpClient) {
-    this.baseURL="http://northwindapi.azurewebsites.net/api/products";
+    // this.baseURL = 'http://northwindapi.azurewebsites.net/api/products';
+    this.baseURL = 'http://192.168.56.1:8080/api/product';
   }
 
 

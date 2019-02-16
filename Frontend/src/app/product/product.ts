@@ -1,8 +1,11 @@
 export class Product {
-    productId: number;
-    categoryId: number;
-    productName: String;
-    quantityPerUnit: String;
-    unitPrice: number;
-    unitsInStock: number;
+    // productName: String;
+    // unitPrice: number;
+    // unitsInStock: number;
+    // id: number;
+
+    id: number;
+    name: String;
+    price: number;
+    stock: number;
 }

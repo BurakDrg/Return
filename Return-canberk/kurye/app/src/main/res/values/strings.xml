@@ -6,4 +6,7 @@
     <string name="title_activity_siparis_listesi">siparis_listesi</string>
     <string name="title_activity_siparis_detay">siparis_detay</string>
     <string name="title_activity_ana_sayfa">ana_sayfa</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="sipari_detaylar">Sipariş Detayları</string>
+    <string name="ana_sayfa">Ana Sayfa</string>
 </resources>

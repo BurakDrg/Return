@@ -7,15 +7,13 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 public class ana_sayfa extends AppCompatActivity {
 
-    private TextView mTextMessage;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kurye_profil);
+        setContentView(R.layout.a_sayfa);
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
 
         Menu menu = bottomNavigationView.getMenu();
@@ -28,17 +26,17 @@ public class ana_sayfa extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
 
                     case R.id.navigation_dashboard:
-                        Intent intent1 = new Intent(ana_sayfa.this, ana_sayfa.class);
+                        Intent intent1 = new Intent(ana_sayfa.this, siparis_listesi.class);
                         startActivity(intent1);
                         break;
 
                     case R.id.navigation_notifications:
-                        Intent intent2 = new Intent(ana_sayfa.this, siparis_listesi.class);
+                        Intent intent2 = new Intent(ana_sayfa.this, kurye_profil.class);
                         startActivity(intent2);
                         break;
 
                     case R.id.navigation_home:
-                        Intent intent3 = new Intent(ana_sayfa.this, kurye_profil.class);
+                        Intent intent3 = new Intent(ana_sayfa.this, ana_sayfa.class);
                         startActivity(intent3);
                         break;
 
