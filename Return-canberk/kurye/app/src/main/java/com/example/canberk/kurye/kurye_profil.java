@@ -12,6 +12,7 @@ import android.widget.TextView;
 public class kurye_profil extends AppCompatActivity {
 
     private TextView mTextMessage;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kurye_profil);
@@ -27,17 +28,17 @@ public class kurye_profil extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
 
                     case R.id.navigation_dashboard:
-                        Intent intent1 = new Intent(kurye_profil.this, ana_sayfa.class);
+                        Intent intent1 = new Intent(kurye_profil.this, siparis_listesi.class);
                         startActivity(intent1);
                         break;
 
                     case R.id.navigation_notifications:
-                        Intent intent2 = new Intent(kurye_profil.this, siparis_listesi.class);
+                        Intent intent2 = new Intent(kurye_profil.this, kurye_profil.class);
                         startActivity(intent2);
                         break;
 
                     case R.id.navigation_home:
-                        Intent intent3 = new Intent(kurye_profil.this, kurye_profil.class);
+                        Intent intent3 = new Intent(kurye_profil.this, ana_sayfa.class);
                         startActivity(intent3);
                         break;
 

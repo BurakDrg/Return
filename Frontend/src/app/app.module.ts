@@ -10,6 +10,12 @@ import { CategoryComponent } from './category/category.component';
 import { CartComponent } from './cart/cart.component';
 import { DenemeComponent } from './deneme/deneme.component';
 import { ProductService } from './product/product.service';
+import {FormsModule} from '@angular/forms'
+import { AgmCoreModule } from '@agm/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import 'hammerjs';
+// tslint:disable-next-line:max-line-length
+import { MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, MatSelectModule, MatButtonModule, MatCheckboxModule, MatBadgeModule , MatMenuModule, MatIconModule, MatListModule, MatDividerModule} from '@angular/material';
 
 
 @NgModule({
@@ -21,6 +27,23 @@ import { ProductService } from './product/product.service';
       DenemeComponent
    ],
    imports: [
+      FormsModule,
+      BrowserAnimationsModule,
+      MatTableModule,
+      MatPaginatorModule,
+      MatSortModule,
+      MatButtonModule,
+      MatCheckboxModule,
+      MatBadgeModule,
+      MatMenuModule,
+      MatIconModule,
+      MatListModule,
+      MatDividerModule,
+      MatSelectModule,
+      MatFormFieldModule,
+      AgmCoreModule.forRoot({
+         apiKey: ''// PUT MAPS API KEY HERE
+      }),
       BrowserModule,
       AppRoutingModule,
       HttpClientModule

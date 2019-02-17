@@ -1,14 +1,15 @@
 <h3>{{title}}</h3>
+<app-category></app-category>
 <table class="table">
   <td>ID</td>
   <td>Name</td>
   <td>Price</td>
   <td>Stock</td>
   <tr *ngFor='let product of products'>
-   <td>{{product.productId}}</td>
-   <td>{{product.productName}}</td>
-   <td>{{product.unitPrice}}</td>
-   <td>{{product.unitsInStock}}</td>
+   <td>{{product.id}}</td>
+   <td>{{product.name}}</td>
+   <td>{{product.price}}</td>
+   <td>{{product.stock}}</td>
    <button type="button" class="btn btn-secondary btn-sm">Edit</button>
   </tr>
 </table>
