@@ -114,17 +114,21 @@
 <mat-divider></mat-divider>
 
 <mat-nav-list>
-  <mat-list-item *ngFor="let product of myCart">
+  <mat-list-item *ngFor="let productToShow of cartToShow">
     <mat-divider></mat-divider>
     <div>
+      <!--
       <button
         mat-raised-button
         color="primary"
         (click)="removeFromCart(product)"
       >
-        Remove From Cart</button
-      ><span style="margin-left: 10em;"> Product: {{ product.name }} </span
-      ><span style="margin-left: 10em;"> Market: {{ product.market }} </span>
+        Remove From Cart</button>
+        -->
+      <span style="margin-left: 10em;"> Product: {{ productToShow.product.name }} </span>
+      <span style="margin-left: 10em;"> Market: {{ productToShow.product.market }} </span>
+      <span style="margin-left: 10em;"> Quantity: {{ productToShow.quantity }} </span>
+
     </div>
   </mat-list-item>
 </mat-nav-list>

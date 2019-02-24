@@ -9,6 +9,7 @@ import { NgTableParams } from "ng-table";
 import { MatPaginator, MatTableDataSource, MatSort } from "@angular/material";
 import { SelectionModel } from "@angular/cdk/collections";
 import { calcPossibleSecurityContexts } from "@angular/compiler/src/template_parser/binding_parser";
+import { cartProduct } from '../cartProduct';
 
 @Component({
   selector: "app-deneme",
@@ -28,6 +29,8 @@ export class DenemeComponent implements OnInit {
   possibleCheapestPrice: number = 0;
 
   myCart: Array<Product> = [];
+
+  cartToShow: Array<cartProduct> = [];
 
   allMarkets: Array<Market> = [];
 
@@ -113,6 +116,35 @@ export class DenemeComponent implements OnInit {
     });
 
     return false;
+  }
+
+  updateCartToShow(){
+    for(var i = 0 ; i < this.myCart.length ; i++){
+      var flag = false;
+      var ind = -1;
+      for(var j = 0 ; j< this.cartToShow.length ; j++){
+        if(this.cartToShow[j].product.name == this.myCart[i].name){
+          flag = true;
+          ind = j;
+          break;
+        }
+      }
+      if(flag && ind != -1){
+        this.cartToShow[ind].quantity++;
+      }
+      else{
+        this.cartToShow[i] =new cartProduct();
+        this.cartToShow[i].product = this.myCart[i];
+        this.cartToShow[i].quantity = 1;
+      }
+      flag = false;
+      ind = -1;
+
+
+    }
+
+
+    console.log("LENGTH:" + this.cartToShow.length);
   }
 
   getMarketProduct(market: Market) {
@@ -255,6 +287,8 @@ export class DenemeComponent implements OnInit {
     this.myCart.push(newProductToAdd);
     this.myCartTotal += newProductToAdd.price;
     this.setToCheapestMarket();
+    this.updateCartToShow();
+    
   }
   removeFromCart(productToRemove: Product) {
     var index = this.myCart.indexOf(productToRemove);
