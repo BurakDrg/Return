@@ -1,10 +1,15 @@
 package com.example.canberk.kurye
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.BaseAdapter
+import android.widget.ListView
 import android.widget.TextView
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
@@ -53,6 +58,8 @@ class siparis_detay : AppCompatActivity(), OnMapReadyCallback {
             }
             false
         })
+        val listView = findViewById<ListView>(R.id.siparis_detay_listview)
+        listView.adapter = CustomSiparisListesiAdapter(this)
     }
 
     private fun initGoogleMap(savedInstanceState: Bundle?) {
@@ -119,4 +126,42 @@ class siparis_detay : AppCompatActivity(), OnMapReadyCallback {
         private val MAPVIEW_BUNDLE_KEY = "MapViewBundleKey"
     }
 
+    private class CustomSiparisListesiAdapter(context: Context): BaseAdapter(){
+        private val mContext: Context
+
+        private val names = arrayListOf<String>(
+                "elma", "armut", "peynir", "süt", "un", "kavun", "dana pirzola", "biftek", "ahududu", "yoğurt", "ekmek", "Su", "tuz", "Fıstık"
+        )
+        private val places = arrayListOf<String>(
+                "migros", "migros", "migros", "bim", "şok", "şok", "şok", "çağdaş", "çağdaş", "çağdaş", "çağdaş", "Makro Market", "Makro Market", "Makro Market"
+        )
+
+        init {
+            mContext = context
+        }
+
+        override fun getCount(): Int {
+            return names.size
+        }
+        override fun getItemId(position: Int): Long {
+            return position.toLong()
+        }
+        override fun getItem(position: Int): Any {
+            return "test"
+        }
+        override fun getView(position: Int, convertView: View?, viewGroup: ViewGroup?): View {
+            val layoutInflater = LayoutInflater.from(mContext)
+            val rowMain = layoutInflater.inflate(R.layout.row2,viewGroup,false)
+            val nameTextView = rowMain.findViewById<TextView>(R.id.textView12)
+            nameTextView.text = names.get(position)
+            val placeTextView = rowMain.findViewById<TextView>(R.id.textView13)
+            placeTextView.text = places.get(position)
+            val positionTextView = rowMain.findViewById<TextView>(R.id.textView14)
+            positionTextView.text = "$position"
+            return rowMain
+            //val textView = TextView(mContext)
+            //textView.text = "test text for the row for listview"
+            //return textView
+        }
+    }
 }
