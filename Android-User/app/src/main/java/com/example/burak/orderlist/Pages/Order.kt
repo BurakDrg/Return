@@ -33,7 +33,7 @@ class Order : Fragment(), View.OnClickListener, TextView.OnEditorActionListener{
     companion object {
         var searchtext : String = ""
         var rvAdapter = Order_RvAdapter(("").map {""}.toMutableList())
-        val serverurl = "http://192.168.1.23:8080/api/product"
+        val serverurl = "http://192.168.56.1:8080/api/product"
         var counter = 0;
     }
 
@@ -147,6 +147,7 @@ class Order : Fragment(), View.OnClickListener, TextView.OnEditorActionListener{
                     "price" -> price = reader.nextString()
                     else -> reader.skipValue()
                 }
+                println("Burda2 => " + name)
             }
             println("Burda => " + name)
             rvAdapter.addItem(name + ":" + price)
