@@ -10,6 +10,7 @@
    <td>{{product.name}}</td>
    <td>{{product.price}}</td>
    <td>{{product.stock}}</td>
-   <button type="button" class="btn btn-secondary btn-sm">Edit</button>
+   <button type="button" class="btn btn-secondary btn-sm" (click)="updateProduct(product)">Edit</button>
+   <button type="button" class="btn btn-secondary btn-sm" (click)="deleteProduct(product)">Delete</button>
   </tr>
 </table>
