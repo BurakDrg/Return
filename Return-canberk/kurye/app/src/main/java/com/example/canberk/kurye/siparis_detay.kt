@@ -62,6 +62,20 @@ class siparis_detay : AppCompatActivity(), OnMapReadyCallback {
         listView.adapter = CustomSiparisListesiAdapter(this)
     }
 
+    companion object {
+        const val EXTRA_TITLE = "title"
+        const val EXTRA_URL = "url"
+        private val MAPVIEW_BUNDLE_KEY = "MapViewBundleKey"
+        fun newIntent(context: Context, order: Order): Intent {
+            val detailIntent = Intent(context, siparis_detay::class.java)
+
+            //detailIntent.putExtra(EXTRA_TITLE, order.title)
+            //detailIntent.putExtra(EXTRA_URL, order.instructionUrl)
+
+            return detailIntent
+        }
+    }
+
     private fun initGoogleMap(savedInstanceState: Bundle?) {
         // *** IMPORTANT ***
         // MapView requires that the Bundle you pass contain _ONLY_ MapView SDK
@@ -122,9 +136,7 @@ class siparis_detay : AppCompatActivity(), OnMapReadyCallback {
         mMapView!!.onLowMemory()
     }
 
-    companion object {
-        private val MAPVIEW_BUNDLE_KEY = "MapViewBundleKey"
-    }
+
 
     private class CustomSiparisListesiAdapter(context: Context): BaseAdapter(){
         private val mContext: Context

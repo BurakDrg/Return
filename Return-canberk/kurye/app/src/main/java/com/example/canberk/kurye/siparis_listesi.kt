@@ -8,10 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.BaseAdapter
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 
 class siparis_listesi : AppCompatActivity() {
 
@@ -51,19 +48,25 @@ class siparis_listesi : AppCompatActivity() {
         })
 
         val listView = findViewById<ListView>(R.id.siparis_listview)
+        //val orderList = Order.getOrdersFromFile("orders.json", this)
         listView.adapter = CustomSiparisListesiAdapter(this)
         /*
-        val textView = findViewById<TextView>(R.id.textView15)
-        listView.setOnItemClickListener{
-            parent: AdapterView<*>,view: View?, position:Int,id: Long ->
-            textView.text=names[position]
+        val context = this
+        listView.setOnItemClickListener{ parent: AdapterView<*>,view: View?, position:Int,id: Long ->
+
+            val selectedOrder = listView.getItemAtPosition(position)
+
+            val detailIntent = siparis_detay.newIntent(context, selectedOrder)
+
+            startActivity(detailIntent)
         }
         */
+
     }
     class CustomSiparisListesiAdapter(context: Context): BaseAdapter(){
         private val mContext: Context
 
-        private val names = arrayListOf<String>(
+        private val orders = arrayListOf<String>(
                 "Canberk Sakarya", "Azra Kurtaraner", "Utku Çuhadaroğlu", "Burak Durgunsu", "Berk Bacalan", "Steve Jobs", "Bill Gates", "Mark Zuckerber", "Zeki Mazan", "Ali Yılmaz", "Lale Demirkaya", "Sinem Çelik", "Mehmet Yılmazer", "Fikret Yaşar"
         )
 
@@ -72,7 +75,7 @@ class siparis_listesi : AppCompatActivity() {
         }
 
         override fun getCount(): Int {
-            return names.size
+            return orders.size
         }
         override fun getItemId(position: Int): Long {
             return position.toLong()
@@ -83,10 +86,11 @@ class siparis_listesi : AppCompatActivity() {
         override fun getView(position: Int, convertView: View?, viewGroup: ViewGroup?): View {
             val layoutInflater = LayoutInflater.from(mContext)
             val rowMain = layoutInflater.inflate(R.layout.row,viewGroup,false)
-            val nameTextView = rowMain.findViewById<TextView>(R.id.textView4)
-            nameTextView.text = names.get(position)
+            val ordersTextView = rowMain.findViewById<TextView>(R.id.textView4)
+            ordersTextView.text = orders.get(position)
             val positionTextView = rowMain.findViewById<TextView>(R.id.textView5)
             positionTextView.text = "Sipariş Numarası: $position"
+            val order = getItem(position) as Order
             return rowMain
             //val textView = TextView(mContext)
             //textView.text = "test text for the row for listview"
