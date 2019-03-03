@@ -11,5 +11,5 @@ import com.example.project.model.Order;
 @SuppressWarnings("unused")
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long>, JpaSpecificationExecutor<Order> {
-	List<Order> findAllByUserid(long id);
+	List<Order> findAllByOrderid(long id);
 }

@@ -41,8 +41,18 @@ class Order_RvAdapter(private val items: MutableList<String>)  : RecyclerView.Ad
         fun bind(name:String) = with(itemView) {
             orderRowName.text = name.split(":")[0]
             productPrice.text = name.split(":")[1]
-            increaseNumber.setOnClickListener{ ShoppingCart.rvAdapter.addItem(name.split(":")[0])}
-            decreaseNumber.setOnClickListener{ ShoppingCart.rvAdapter.removeAt(0)}
+            increaseNumber.setOnClickListener{
+                ShoppingCart.rvAdapter.addItem(name.split(":")[0])
+                var order_amount: Int = amount.text.toString().toInt()
+                order_amount = order_amount + 1
+                amount.text = "" + order_amount
+            }
+            decreaseNumber.setOnClickListener{
+                ShoppingCart.rvAdapter.removeAt(0)
+                var order_amount: Int = amount.text.toString().toInt()
+                order_amount = order_amount - 1
+                amount.text = "" + order_amount
+            }
         }
 
     }

@@ -10,13 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
-	private Long userid;
+	private Long orderid;
     
     @Column(name = "name")
     private String name;
@@ -28,11 +28,11 @@ public class Order {
     private Double price;
 
 	public Long getId() {
-        return userid;
+        return orderid;
     }
 
-    public void setId(Long userid) {
-        this.userid = userid;
+    public void setId(Long orderid) {
+        this.orderid = orderid;
 	}
     
     public String getName() {
@@ -45,6 +45,19 @@ public class Order {
     
     public Order Name(String name){
 		this.name = name;
+		return this;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    
+    public Order Address(String address){
+		this.address = address;
 		return this;
     }
 
@@ -61,18 +74,6 @@ public class Order {
 		return this;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-    
-    public Order Address(String address){
-		this.address = address;
-		return this;
-    }
 
     @Override
     public String toString() {return "Geldi";}
