@@ -34,10 +34,10 @@ export class ProductComponent implements OnInit {
       });
   }
 
-  editUser(product: Product): void {
+  editProduct(product: Product): void {
     window.localStorage.removeItem('editProductId');
     window.localStorage.setItem('editProductId', product.id.toString());
-    this.router.navigate(['edit-user']);
+    this.router.navigate(['edit-product']);
   }
 
   addProduct(): void {
