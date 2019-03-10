@@ -10,22 +10,25 @@ import { ProductService } from '../product.service';
 })
 export class AddProductComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private productService: ProductService) { }
-
-  addForm: FormGroup;
+  angForm: FormGroup;
+  constructor(private fb: FormBuilder, private router: Router, private productService: ProductService) {
+    this.createForm();
+   }
 
   ngOnInit() {
-    this.addForm = this.formBuilder.group({
-      id: [],
-      name: ['', Validators.required],
-      stock: ['', Validators.required],
-      price: ['', Validators.required]
-    });
+    }
 
-  }
+    createForm() {
+      this.angForm = this.fb.group({
+        name: ['', Validators.required ],
+        stock: ['', Validators.required ],
+        price: ['', Validators.required ]
+      });
+    }
+
 
   onSubmit() {
-    this.productService.createProduct(this.addForm.value)
+    this.productService.createProduct(this.angForm.value)
       .subscribe( data => {
         this.router.navigate(['product']);
       });

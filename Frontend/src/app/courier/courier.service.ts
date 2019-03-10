@@ -9,11 +9,11 @@ export class CourierService {
   baseURL: string;
 
   constructor(private http: HttpClient) {
-    this.baseURL = 'http://192.168.1.107:8080/api/orders';
+    this.baseURL = 'https://192.168.1.107:8080/api/orders';
   }
 
 
-  getCourier(): Observable<Array<Courier>> {
+getCourier(): Observable<Array<Courier>> {
     return this.http.get<Array<Courier>>(this.baseURL);
   }
 

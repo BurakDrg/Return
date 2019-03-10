@@ -34,11 +34,11 @@ export class ProductComponent implements OnInit {
       });
   }
 
-  editProduct(product: Product): void {
-    window.localStorage.removeItem('editProductId');
-    window.localStorage.setItem('editProductId', product.id.toString());
-    this.router.navigate(['edit-product']);
-  }
+  // editProduct(product: Product): void {
+  //   window.localStorage.removeItem('editProductId');
+  //   window.localStorage.setItem('editProductId', product.id.toString());
+  //   this.router.navigate(['edit-product']);
+  // }
 
   addProduct(): void {
     this.router.navigate(['add-product']);

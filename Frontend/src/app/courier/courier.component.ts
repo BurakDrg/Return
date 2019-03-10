@@ -15,7 +15,10 @@ export class CourierComponent implements OnInit {
   constructor(private courierService: CourierService) { }
 
   ngOnInit() {
-    this.getCourier();
+    this.courierService.getCourier()
+    .subscribe( data => {
+      this.orders = data;
+    });
   }
 
   getCourier() {

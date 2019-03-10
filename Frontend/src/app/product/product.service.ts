@@ -20,9 +20,9 @@ export class ProductService {
   createProduct(product: Product) {
     return this.http.post(this.baseURL, product);
   }
-  updateProduct(product: Product) {
-    return this.http.put(this.baseURL + '/' + product.id, product);
-  }
+  // updateProduct(product: Product) {
+  //   return this.http.put(this.baseURL + '/' + product.id, product);
+  // }
   deleteProduct(id: number) {
     return this.http.delete(this.baseURL + '/' + id);
   }

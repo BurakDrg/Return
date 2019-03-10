@@ -7,7 +7,6 @@ import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { CourierComponent } from './courier/courier.component';
-import { EditProductComponent } from './product/edit-product/edit-product.component';
 import { AddProductComponent } from './product/add-product/add-product.component';
 
 export const routes: Routes = [
@@ -47,11 +46,11 @@ export const routes: Routes = [
       component: AdminComponent,
       pathMatch: 'full',
     },
-    {
-      path: 'edit-product',
-      component: EditProductComponent,
-      pathMatch: 'full',
-    },
+    // {
+    //   path: 'edit-product',
+    //   component: EditProductComponent,
+    //   pathMatch: 'full',
+    // },
     {
       path: '',
       component: HomeComponent,
