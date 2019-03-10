@@ -9,6 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import org.json.JSONArray
+import android.widget.Toast
+import android.widget.AdapterView
+
+
+
+
 
 class siparis_listesi : AppCompatActivity() {
 
@@ -46,22 +53,28 @@ class siparis_listesi : AppCompatActivity() {
             }
             false
         })
+        //populate list with json//
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        val jsonInput = "[\"one\",\"two\",\"three\",\"four\",\"five\",\"six\",\"seven\",\"eight\",\"nine\",\"ten\"]"
+        val jsonArray = JSONArray(jsonInput)
+        val length = jsonArray.length()
+        val listContents = ArrayList<String>(length)
+        for (i in 0 until length) {
+            listContents.add(jsonArray.getString(i))
+        }
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
         val listView = findViewById<ListView>(R.id.siparis_listview)
         //val orderList = Order.getOrdersFromFile("orders.json", this)
         listView.adapter = CustomSiparisListesiAdapter(this)
-        /*
-        val context = this
-        listView.setOnItemClickListener{ parent: AdapterView<*>,view: View?, position:Int,id: Long ->
-
-            val selectedOrder = listView.getItemAtPosition(position)
-
-            val detailIntent = siparis_detay.newIntent(context, selectedOrder)
-
-            startActivity(detailIntent)
+        listView.setOnItemClickListener { parent, view, position, id ->
+            val nameofcutomer=listView.getItemAtPosition(position)
+            Toast.makeText(this, "Clicked item :"+" "+nameofcutomer,Toast.LENGTH_SHORT).show()
+            val intenttodetail = Intent(this@siparis_listesi, siparis_detay::class.java)
+            intenttodetail.putExtra("customername",nameofcutomer.toString())
+            this.startActivity(intenttodetail)
         }
-        */
-
     }
     class CustomSiparisListesiAdapter(context: Context): BaseAdapter(){
         private val mContext: Context
@@ -81,7 +94,7 @@ class siparis_listesi : AppCompatActivity() {
             return position.toLong()
         }
         override fun getItem(position: Int): Any {
-            return "test"
+            return orders[position]
         }
         override fun getView(position: Int, convertView: View?, viewGroup: ViewGroup?): View {
             val layoutInflater = LayoutInflater.from(mContext)

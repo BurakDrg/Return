@@ -27,7 +27,9 @@ class siparis_detay : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.s_detay)
         mMapView = findViewById<View>(R.id.mapView) as MapView?
-
+        val profileName=intent.getStringExtra("customername")
+        val customernameplace = findViewById<TextView>(R.id.textView16)
+        customernameplace.text = profileName
         initGoogleMap(savedInstanceState)
         val bottomNavigationView = findViewById<View>(R.id.navigation) as BottomNavigationView
 
