@@ -16,7 +16,10 @@ export class ProductComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.getProducts();
+    this.productService.getProducts()
+    .subscribe( data => {
+      this.products = data;
+    });
   }
 
   getProducts() {
@@ -31,15 +34,15 @@ export class ProductComponent implements OnInit {
       });
   }
 
-  editProduct(product: Product): void {
-    localStorage.removeItem("editProductStock");
-    localStorage.setItem("editUserStock", product.id.toString());
-    this.router.navigate(['edit-product']);
+  editUser(product: Product): void {
+    window.localStorage.removeItem('editProductId');
+    window.localStorage.setItem('editProductId', product.id.toString());
+    this.router.navigate(['edit-user']);
   }
 
   addProduct(): void {
     this.router.navigate(['add-product']);
-  };
+  }
 
 
 }

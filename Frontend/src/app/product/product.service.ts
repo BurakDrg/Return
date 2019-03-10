@@ -26,5 +26,9 @@ export class ProductService {
   deleteProduct(id: number) {
     return this.http.delete(this.baseURL + '/' + id);
   }
+  getProductById(arg0: number): any {
+    throw new Error('Method not implemented.');
+  }
+
 
 }

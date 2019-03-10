@@ -12,7 +12,7 @@ import { DenemeComponent } from './deneme/deneme.component';
 import { CourierComponent } from './courier/courier.component';
 import { ProductService } from './product/product.service';
 import { CourierService } from './courier/courier.service';
-import { FormsModule} from '@angular/forms'
+import { FormsModule} from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
@@ -21,6 +21,8 @@ import { MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, 
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
+import { EditProductComponent } from './product/edit-product/edit-product.component';
+import { AddProductComponent } from './product/add-product/add-product.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { HomeComponent } from './home/home.component';
       LoginComponent,
       AdminComponent,
       HomeComponent,
-      CourierComponent
+      CourierComponent,
+      EditProductComponent,
+      AddProductComponent
    ],
    imports: [
       FormsModule,
@@ -57,7 +61,7 @@ import { HomeComponent } from './home/home.component';
       AppRoutingModule,
       HttpClientModule
    ],
-   providers: [],
+   providers: [ProductService],
    bootstrap: [
       AppComponent
    ]
