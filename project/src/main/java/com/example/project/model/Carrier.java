@@ -10,13 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-@Table(name = "USERINFO")
-public class User {
+@Table(name = "carriers")
+public class Carrier {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
-	private Long userid;
+	private Long carrierid;
     
     @Column(name = "Name")
     private String name;
@@ -31,11 +31,11 @@ public class User {
     private Double longitude;
 
 	public Long getId() {
-        return userid;
+        return carrierid;
     }
 
-    public void setId(Long userid) {
-        this.userid = userid;
+    public void setId(Long carrierid) {
+        this.carrierid = carrierid;
 	}
 
     public String getName() {
@@ -46,7 +46,7 @@ public class User {
         this.name = name;
     }
     
-    public User Name(String name){
+    public Carrier Name(String name){
 		this.name = name;
 		return this;
     }
@@ -59,7 +59,7 @@ public class User {
         this.address = address;
     }
     
-    public User Address(String address){
+    public Carrier Address(String address){
 		this.address = address;
 		return this;
     }
@@ -72,7 +72,7 @@ public class User {
         this.latitude = latitude;
     }
     
-    public User Latitude(Double latitude){
+    public Carrier Latitude(Double latitude){
 		this.latitude = latitude;
 		return this;
     }
@@ -85,7 +85,7 @@ public class User {
         this.longitude = longitude;
     }
     
-    public User Longitude(Double longitude){
+    public Carrier Longitude(Double longitude){
 		this.longitude = longitude;
 		return this;
     }

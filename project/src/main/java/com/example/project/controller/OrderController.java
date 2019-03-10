@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.ApiParam;
 import com.example.project.model.Order;
-import com.example.project.repository.OrderRepository;;
+import com.example.project.repository.OrderRepository;
 
 @RestController
 @RequestMapping("/api")

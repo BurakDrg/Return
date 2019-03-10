@@ -33,6 +33,17 @@ class ShoppingCart_RvAdapter(private val items: MutableList<String>) : RecyclerV
 
         fun bind(name: String) = with(itemView) {
             rowName.text = name
+
+            increaseNumber.setOnClickListener{
+                var order_amount: Int = amount.text.toString().toInt()
+                order_amount = order_amount + 1
+                amount.text = "" + order_amount
+            }
+            decreaseNumber.setOnClickListener{
+                var order_amount: Int = amount.text.toString().toInt()
+                order_amount = order_amount - 1
+                amount.text = "" + order_amount
+            }
         }
     }
 }

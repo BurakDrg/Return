@@ -4,6 +4,7 @@ import com.example.project.repository.UserRepository;
 import com.example.project.repository.ProductRepository;
 
 import com.example.project.model.Product;
+import com.example.project.model.User;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -77,6 +78,14 @@ public class ProjectApplication  implements CommandLineRunner{
 		products.add(p37);
 
 		productRepository.saveAll(products);
+
+		User admin=new User();
+		admin.Name("Admin");
+		admin.Address("1.cad 1.sok. No:1 Ankara");
+		admin.Latitude(35.1);
+		admin.Longitude(35.1);
+
+		userRepository.save(admin);
 	}
 
 }

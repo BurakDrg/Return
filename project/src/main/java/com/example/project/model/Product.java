@@ -16,7 +16,7 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
-	private Long userid;
+	private Long productid;
     
     @Column(name = "name")
     private String name;
@@ -28,11 +28,11 @@ public class Product {
     private int stock;
 
 	public Long getId() {
-        return userid;
+        return productid;
     }
 
-    public void setId(Long userid) {
-        this.userid = userid;
+    public void setId(Long productid) {
+        this.productid = productid;
 	}
     
     public String getName() {

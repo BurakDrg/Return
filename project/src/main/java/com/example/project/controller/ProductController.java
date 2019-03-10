@@ -29,7 +29,7 @@ import com.example.project.repository.ProductRepository;
 @RequestMapping("/api")
 public class ProductController {
 
-    private final Logger log = LoggerFactory.getLogger(UserController.class);
+    private final Logger log = LoggerFactory.getLogger(ProductController.class);
 
     private static final String ENTITY_NAME = "productController";  
 
