@@ -7,9 +7,17 @@ import { Observable } from 'rxjs';
 export class CourierService {
 
   baseURL: string;
+  lat: any;
+  lng: any;
 
   constructor(private http: HttpClient) {
     this.baseURL = 'https://192.168.1.107:8080/api/orders';
+    if (navigator) {
+    navigator.geolocation.getCurrentPosition( pos => {
+        this.lng = +pos.coords.longitude;
+        this.lat = +pos.coords.latitude;
+      });
+    }
   }
 
 

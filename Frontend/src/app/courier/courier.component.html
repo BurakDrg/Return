@@ -1,3 +1,14 @@
+
+<agm-map  [latitude]="lat" [longitude]="lng">
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  <agm-circle [latitude]="lat" [longitude]="lng" 
+      [radius]="3000"
+      [fillColor]="'blue'"
+      [fillOpacity]="0.15"
+      [circleDraggable]="false"
+      [editable]="false">
+  </agm-circle>
+</agm-map>
 <h3>{{title}}</h3>
 <table class="table">
   <td>Name</td>
@@ -10,3 +21,4 @@
    <button type="button" class="btn btn-secondary btn-sm">Select</button>
   </tr>
 </table>
+
