@@ -19,7 +19,7 @@ import { cartProduct } from '../cartProduct';
 export class DenemeComponent implements OnInit {
   Marketler = LOCATIONS;
   nearestMarket: Market = new Market();
-
+  selectedQuantity:1;
   selectedMarket: Market;
 
   userPosition: Position;
@@ -130,7 +130,11 @@ export class DenemeComponent implements OnInit {
         }
       }
       if(flag && ind != -1){
-        this.cartToShow[ind].quantity++;
+        if(this.selectedQuantity == null){
+          this.selectedQuantity = 1;
+        }
+        this.cartToShow[ind].quantity = Number(this.cartToShow[ind].quantity) + Number(this.selectedQuantity);
+        break;        
       }
       else{
         this.cartToShow[i] =new cartProduct();
