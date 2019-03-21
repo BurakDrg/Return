@@ -9,6 +9,7 @@ import { AgmCoreModule } from '@agm/core';
 
 import { MatTableModule,MatPaginatorModule,MatSortModule,MatFormFieldModule,MatSelectModule,MatButtonModule,MatCheckboxModule,MatBadgeModule ,MatMenuModule,MatIconModule,MatListModule,MatDividerModule} from  '@angular/material';
 import 'hammerjs';
+import { ShoppingComponent } from './shopping/shopping.component';
 
 
 
@@ -16,7 +17,8 @@ import 'hammerjs';
 @NgModule({
   declarations: [
     AppComponent,
-    DenemeComponent
+    DenemeComponent,
+    ShoppingComponent
   ],
   imports: [
     BrowserModule,

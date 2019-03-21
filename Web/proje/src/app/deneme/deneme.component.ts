@@ -329,7 +329,7 @@ export class DenemeComponent implements OnInit {
 
   findNearestMarket(lat: number, longi: number): Market {
     let minMarket: Market;
-    let minDistance: number = 9999999999;
+    let minDistance: number = 9999999999; 
 
     for (let market of LOCATIONS) {
       let distance: number = Math.sqrt(
