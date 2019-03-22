@@ -1,0 +1,24 @@
+
+<agm-map  [latitude]="lat" [longitude]="lng">
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  <agm-circle [latitude]="lat" [longitude]="lng" 
+      [radius]="3000"
+      [fillColor]="'blue'"
+      [fillOpacity]="0.15"
+      [circleDraggable]="false"
+      [editable]="false">
+  </agm-circle>
+</agm-map>
+<h3>{{title}}</h3>
+<table class="table">
+  <td>Name</td>
+  <td>Distance</td>
+  <td>Price</td>
+  <tr *ngFor='let order of orders'>
+   <td>{{order.name}}</td>
+   <td>{{order.distance}}</td>
+   <td>{{order.price}}</td>
+   <button type="button" class="btn btn-secondary btn-sm">Select</button>
+  </tr>
+</table>
+

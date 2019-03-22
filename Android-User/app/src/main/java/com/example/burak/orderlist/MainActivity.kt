@@ -1,5 +1,6 @@
 package com.example.burak.orderlist
 
+import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -13,6 +14,14 @@ import com.example.burak.orderlist.Pages.Order
 import com.example.burak.orderlist.Pages.Profile
 import com.example.burak.orderlist.Pages.ShoppingCart
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.BufferedReader
+import java.io.InputStream
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
+import android.util.JsonReader
+import org.json.JSONObject
+
 
 class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
 
@@ -27,6 +36,8 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         ft.replace(R.id.container, Order()).commit()
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -90,6 +101,7 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
         override fun getItem(position: Int): Fragment? {
 
             var fragment: Fragment? = null
+            setContentView(R.layout.activity_main)
 
             if(position == 0) fragment = Order()
             else if(position == 1) fragment = ShoppingCart()
@@ -103,4 +115,8 @@ class MainActivity : AppCompatActivity(), ViewPager.OnPageChangeListener {
             return 3
         }
     }
+
+
 }
+
+
