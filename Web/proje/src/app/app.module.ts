@@ -7,7 +7,7 @@ import { DenemeComponent } from './deneme/deneme.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 
-import { MatTableModule,MatPaginatorModule,MatSortModule,MatFormFieldModule,MatSelectModule,MatButtonModule,MatCheckboxModule,MatBadgeModule ,MatMenuModule,MatIconModule,MatListModule,MatDividerModule} from  '@angular/material';
+import { MatTableModule,MatInputModule,MatPaginatorModule,MatSortModule,MatFormFieldModule,MatSelectModule,MatButtonModule,MatCheckboxModule,MatBadgeModule ,MatMenuModule,MatIconModule,MatListModule,MatDividerModule} from  '@angular/material';
 import 'hammerjs';
 import { ShoppingComponent } from './shopping/shopping.component';
 
@@ -34,6 +34,7 @@ import { ShoppingComponent } from './shopping/shopping.component';
     MatMenuModule,
     MatIconModule,
     MatListModule,
+    MatInputModule,
     MatDividerModule,
     MatSelectModule,
     MatFormFieldModule,

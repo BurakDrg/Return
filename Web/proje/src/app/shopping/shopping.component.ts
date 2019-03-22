@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { shoppingProduct } from './shoppingProduct';
 import { shoppingMarket } from './shoppingMarket';
-import { MatPaginator, MatTableDataSource, MatSort } from "@angular/material";
+import { MatPaginator, MatTableDataSource,MatFormFieldControl, MatSort } from "@angular/material";
 import { SelectionModel, DataSource } from "@angular/cdk/collections";
 
 
@@ -26,6 +26,10 @@ export class ShoppingComponent implements OnInit {
 
   userPosition:Position;
   nearestMarket:shoppingMarket;
+
+  email:string ="";
+  password:string = "";
+
 
   dataSource = new MatTableDataSource<shoppingProduct>(this.orderedProductList);    //Data Source for HTML TABLE
   myCartDataSource = new MatTableDataSource<shoppingProduct>(this.myCart);  //Data source for Mycart
@@ -65,13 +69,32 @@ export class ShoppingComponent implements OnInit {
       newProduct.quantity = newProduct.selectedQuantity;
       this.myCart.push(newProduct);
     }
-    this.myCartPrice += newProduct.price;
+
+
+    //this.myCartPrice += newProduct.price;
+    this.calculateMyCartPrice();
     this.setToCheapestMarket();
     this.myCartDataSource._updateChangeSubscription();
 
     
     
     
+  }
+
+
+  calculateMyCartPrice(){
+  this.myCartPrice = 0;
+    for(let i = 0 ; i<this.myCart.length ; i++){
+      let subtotal = 0;
+      if(this.myCart[i].quantity == null){
+        this.myCart[i].quantity = 1;
+      }
+      for(let j = 0 ; j < this.myCart[i].quantity ; j++){
+        subtotal += this.myCart[i].price;
+
+      }
+      this.myCartPrice += subtotal;
+    }
   }
 
   checkout(){
@@ -131,6 +154,7 @@ export class ShoppingComponent implements OnInit {
     if (Math.max.apply(Math, sortedPriceOfMarkets) <= 0) {
       console.error("NO SUCH MARKET EXIST, REMOVING LAST PRODUCT"); // Remove Last Added Product
       this.removeFromCart(this.myCart[this.myCart.length - 1]);
+      this.myCartDataSource._updateChangeSubscription();
       return;
     }
 
@@ -169,6 +193,10 @@ export class ShoppingComponent implements OnInit {
     let newProduct:shoppingProduct =this.marketList[this.marketList.indexOf(product.selectedMarket)].findProductInMarket(product.name);
     if(newProduct != null){
       this.orderedProductList.splice(this.orderedProductList.indexOf(product),1,newProduct);
+      newProduct.selectedMarket = product.selectedMarket;
+      for(let i = 0 ; i<product.availableMarkets.length ; i++){
+        newProduct.addToAvailableMarketList(product.availableMarkets[i]);
+      }
     }
     this.dataSource._updateChangeSubscription();  //Update Datasource according to the array changes
 
