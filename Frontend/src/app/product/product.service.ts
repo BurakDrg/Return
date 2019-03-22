@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from './product';
 import { Observable } from 'rxjs';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Injectable()
 export class ProductService {
@@ -9,8 +10,14 @@ export class ProductService {
   baseURL: string;
 
   constructor(private http: HttpClient) {
-    this.baseURL = 'http://192.168.1.107:8080/api/product';
+    this.baseURL = 'http://localhost:8080/api/product';
   }
+
+  form: FormGroup = new FormGroup({
+    name: new FormControl('', Validators.required),
+    price: new FormControl('', Validators.required),
+    stock: new FormControl('', Validators.required)
+  });
 
 
   getProducts(): Observable<Array<Product>> {
@@ -28,6 +35,13 @@ export class ProductService {
   }
   getProductById(arg0: number): any {
     throw new Error('Method not implemented.');
+  }
+  initializeFormGroup() {
+    this.form.setValue({
+      name: '',
+      price: '',
+      stock: ''
+    });
   }
 
 

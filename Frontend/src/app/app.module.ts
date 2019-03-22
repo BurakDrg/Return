@@ -21,6 +21,7 @@ import { MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, 
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
+import {MatDialogModule} from '@angular/material/dialog';
 import { AddProductComponent } from './product/add-product/add-product.component';
 
 
@@ -51,9 +52,10 @@ import { AddProductComponent } from './product/add-product/add-product.component
       MatListModule,
       MatDividerModule,
       MatSelectModule,
+      MatDialogModule,
       MatFormFieldModule,
       AgmCoreModule.forRoot({
-         apiKey: ''// PUT MAPS API KEY HERE
+         apiKey: 'AIzaSyDrY6e0G3NUnCiSNIypl93xou3Z-SR2vek'// PUT MAPS API KEY HERE
       }),
       BrowserModule,
       AppRoutingModule,
@@ -63,6 +65,7 @@ import { AddProductComponent } from './product/add-product/add-product.component
    providers: [ProductService],
    bootstrap: [
       AppComponent
-   ]
+   ],
+   entryComponents: [ProductComponent]
 })
 export class AppModule { }

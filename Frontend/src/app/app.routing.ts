@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { CourierComponent } from './courier/courier.component';
+import { matDialogAnimations, MatDialogModule } from '@angular/material';
 import { AddProductComponent } from './product/add-product/add-product.component';
 
 export const routes: Routes = [
@@ -27,11 +28,6 @@ export const routes: Routes = [
       pathMatch: 'full',
     },
     {
-      path: 'add-product',
-      component: AddProductComponent,
-      pathMatch: 'full',
-    },
-    {
       path: 'user',
       component: DenemeComponent,
       pathMatch: 'full',
@@ -46,20 +42,20 @@ export const routes: Routes = [
       component: AdminComponent,
       pathMatch: 'full',
     },
-    // {
-    //   path: 'edit-product',
-    //   component: EditProductComponent,
-    //   pathMatch: 'full',
-    // },
+    {
+      path: 'add-product',
+      component: AddProductComponent,
+      pathMatch: 'full',
+    },
     {
       path: '',
       component: HomeComponent,
       pathMatch: 'full',
-    }
+    },
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes), MatDialogModule],
+    exports: [RouterModule, MatDialogModule]
   })
   export class AppRoutingModule { }

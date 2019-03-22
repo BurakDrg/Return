@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from './product';
 import { ProductService } from './product.service';
+import { MatDialog, MatDialogConfig, MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { AddProductComponent } from './add-product/add-product.component';
 
 @Component({
   selector: 'app-product',
@@ -13,7 +15,7 @@ export class ProductComponent implements OnInit {
   title = 'Products';
   products: Product[] = [];
   router: any;
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.productService.getProducts()
@@ -40,8 +42,13 @@ export class ProductComponent implements OnInit {
   //   this.router.navigate(['edit-product']);
   // }
 
-  addProduct(): void {
-    this.router.navigate(['add-product']);
+  onCreate() {
+    this.productService.initializeFormGroup();
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '60%';
+    this.dialog.open(AddProductComponent, dialogConfig);
   }
 
 

@@ -11,7 +11,7 @@ export class CourierService {
   lng: any;
 
   constructor(private http: HttpClient) {
-    this.baseURL = 'https://192.168.1.107:8080/api/orders';
+    this.baseURL = 'https://localhost:8080/api/orders';
     if (navigator) {
     navigator.geolocation.getCurrentPosition( pos => {
         this.lng = +pos.coords.longitude;
