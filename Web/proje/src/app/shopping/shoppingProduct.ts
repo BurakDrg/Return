@@ -6,7 +6,7 @@ export class shoppingProduct {
     image: string;
     selectedMarket: shoppingMarket;
     availableMarkets: Array <shoppingMarket>;
-    sku:    number;
+    stock:    number;
     selectedQuantity:   number;
     quantity: number;
     categories:string[];
@@ -16,7 +16,7 @@ export class shoppingProduct {
         this.price = 0;
         this.image = "https://via.placeholder.com/150";
         this.selectedMarket = null; //Possible Null Referance
-        this.sku = 0;
+        this.stock = 0;
         this.quantity = 1;
         this.selectedQuantity = 1;
         this.categories = ["NaN"];

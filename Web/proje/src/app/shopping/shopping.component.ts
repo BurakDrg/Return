@@ -60,6 +60,13 @@ export class ShoppingComponent implements OnInit {
 
   //Add Product To MyCart
   addToCart(newProduct: shoppingProduct) {
+    if(newProduct.selectedMarket == null){
+      console.log("Please choose market.");
+      return;
+  }
+  if(newProduct.selectedQuantity == null){
+    newProduct.selectedQuantity = 1;
+  }
     if(this.myCart.includes(newProduct)){
       for ( let i = 0 ; i< newProduct.selectedQuantity ; i++){
         this.myCart[this.myCart.indexOf(newProduct)].quantity++;
@@ -71,9 +78,8 @@ export class ShoppingComponent implements OnInit {
     }
 
 
-    //this.myCartPrice += newProduct.price;
     this.calculateMyCartPrice();
-    this.setToCheapestMarket();
+    this.calculateCheapestMarket();
     this.myCartDataSource._updateChangeSubscription();
 
     
@@ -105,7 +111,81 @@ export class ShoppingComponent implements OnInit {
   }
 
 
-  setToCheapestMarket() {
+  calculateCheapestMarket(){
+    var matchedItemCount = 0;
+    var myCartItemCount = this.myCart.length;
+    var subTotalMarketPriceCounts: number[] = [];
+    var subTotalPrice = 0;
+    var minPriceForCart = 0;
+    var indexNumberOfCheapestMarket = 0;
+
+    for(let i = 0 ; i<this.marketList.length ; i++){  //All markets
+
+      for(let j = 0 ; j<this.marketList[i].products.length ; j++){  // All Products of markets
+
+        for(let k = 0 ; k<this.myCart.length ; k++){  // My Products
+
+          if(this.marketList[i].products[j].name == this.myCart[k].name){
+
+            subTotalPrice += this.marketList[i].products[j].price * this.myCart[k].quantity;
+            matchedItemCount++;
+          }
+
+        }
+        
+
+      }
+      if(matchedItemCount == myCartItemCount){
+        subTotalMarketPriceCounts.push(subTotalPrice);
+      }
+      else{
+        subTotalMarketPriceCounts.push(-1);
+      }
+      subTotalPrice = 0;
+      matchedItemCount = 0;
+    }
+
+    console.log("Array: " + subTotalMarketPriceCounts.toString());
+
+    var tempPriceOfMarkets: number[] = [...subTotalMarketPriceCounts];
+    var sortedPriceOfMarkets: number[] = tempPriceOfMarkets.sort(
+      (n1, n2) => n1 - n2
+    );
+
+    for (var m = 0; m < sortedPriceOfMarkets.length; m++) {
+      // Find Minumum possible price for cart
+      if (sortedPriceOfMarkets[m] == -1) {
+        continue;
+      }
+      if (sortedPriceOfMarkets[m] > 0) {
+        minPriceForCart = sortedPriceOfMarkets[m];
+        break;
+      }
+    }
+    if (Math.max.apply(Math, sortedPriceOfMarkets) <= 0) {
+      console.error("NO SUCH MARKET EXIST, REMOVING LAST PRODUCT"); // NEED SOLUTION FOR THIS CONDITION
+      //this.removeFromCart(this.myCart[this.myCart.length - 1]);
+      this.myCartDataSource._updateChangeSubscription();
+      return;
+    }
+    indexNumberOfCheapestMarket = subTotalMarketPriceCounts.indexOf(minPriceForCart);
+    this.cheapestMarket = this.marketList[indexNumberOfCheapestMarket];
+    this.improvedCartPossibleCheapestPrice = minPriceForCart;
+    console.log("Prices: " + subTotalMarketPriceCounts.toString());
+    console.log(
+      "Cheapest Market:" +
+        this.cheapestMarket.name +
+        " Price: " +
+        minPriceForCart
+    );
+
+
+
+
+  }
+
+
+  /*setToCheapestMarket() {
     var priceOfMarkets: number[] = [];
     var subTotalPrice = 0;
     var myCartItemCount = this.myCart.length;
@@ -120,7 +200,7 @@ export class ShoppingComponent implements OnInit {
 
         for (var k = 0; k < this.marketList[i].products.length; k++) {
           if (this.marketList[i].products[k].name == this.myCart[j].name) {
-            subTotalPrice += this.marketList[i].products[k].price;
+            subTotalPrice += this.marketList[i].products[k].price ;
             matchedItemCount++;
           }
         }
@@ -168,7 +248,7 @@ export class ShoppingComponent implements OnInit {
         " Price: " +
         minumumPriceForCart
     );
-  }
+  }*/
   removeFromCart(productToRemove: shoppingProduct) {
 
     var index = this.myCart.indexOf(productToRemove);
@@ -183,7 +263,7 @@ export class ShoppingComponent implements OnInit {
       return;
     }
     this.myCartPrice -= productToRemove.price;
-    this.setToCheapestMarket();
+    //this.setToCheapestMarket();
   }
 
 
@@ -318,7 +398,7 @@ export class ShoppingComponent implements OnInit {
 
 
   }
-  // Use Geo Location to pinpoint user ( ITS NOT ACCURATE !)
+  // Use Geo Location to pinpoint user ( ITS NOT ACCURATE for WEB !)
   findMe() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(

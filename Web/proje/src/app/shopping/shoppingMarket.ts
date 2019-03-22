@@ -14,7 +14,7 @@ export class shoppingMarket {
         this.z = 300;
         
     }
-
+    // Add product to this market available products
     addProduct(product: shoppingProduct){
         let shouldReturn = false;
         if(this.products.includes(product)){
