@@ -32,7 +32,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="************************************" />
+            android:value="*************************************" />
         <activity
             android:name=".Login"
             android:label="Return Kurye">
@@ -43,9 +43,6 @@
             </intent-filter>
 
         </activity>
-        <activity
-            android:name=".ana_sayfa"
-            android:label="@string/title_activity_ana_sayfa" />
         <activity
             android:name=".siparis_detay"
             android:label="@string/title_activity_siparis_detay" />
