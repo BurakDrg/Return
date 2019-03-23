@@ -1,38 +1,22 @@
-<div class="card">
-  <div class="card-body">
-    <form [formGroup]="angForm" novalidate>
-      <div class="form-group">
-        <label class="col-md-4">Product Name</label>
-        <input type="text" class="form-control" formControlName="name" #name />
-      </div>
-      <div *ngIf="angForm.controls['name'].invalid && (angForm.controls['name'].dirty || angForm.controls['name'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['name'].errors.required">
-          Product Name is required.
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-md-4">Stock </label>
-        <input type="number" class="form-control" formControlName="stock" #stock />
-      </div>
-      <div *ngIf="angForm.controls['stock'].invalid && (angForm.controls['stock'].dirty || angForm.controls['stock'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['stock'].errors.required">
-          Stock number is required.
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="col-md-4">Price </label>
-        <input type="price" class="form-control" formControlName="price" #price />
-      </div>
-      <div *ngIf="angForm.controls['price'].invalid && (angForm.controls['price'].dirty || angForm.controls['price'].touched)" class="alert alert-danger">
-        <div *ngIf="angForm.controls['price'].errors.required">
-          Price is required.
-        </div>
-      </div>
-      <div class="form-group">
-        <button type="submit" 
-        [disabled]="angForm.pristine || angForm.invalid" 
-        class="btn btn-primary">Add Product</button>
-      </div>
-    </form>
+<div class="col-md-6">
+  <h2 class="text-center">Add Product</h2>
+<form>
+
+  <div class="form-group">
+    <label for="pname">Product Name:</label>
+    <input [(ngModel)]="product.name" placeholder="pname" name="pname" class="form-control" id="pname">
   </div>
+
+  <div class="form-group">
+    <label for="price">Product Price:</label>
+    <input [(ngModel)]="product.price" placeholder="price" name="price" class="form-control" id="price">
+  </div>
+  
+  <div class="form-group">
+    <label for="stock">Product Stock:</label>
+    <input [(ngModel)]="product.stock" placeholder="stock" name="stock" class="form-control" id="stock">
+  </div>
+
+  <button class="btn btn-success" (click)="createProduct()">Create</button>
+</form>
 </div>

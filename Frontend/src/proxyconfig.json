@@ -1,8 +1,6 @@
 {
-"/api": {
-    "target": "http://localhost:1234",
-    "secure": false,
-    "changeOrigin": true
-}
-
-}
+    "/api/*": {
+      "target": "http://localhost:8080/product",
+      "secure": false
+    }
+  }
