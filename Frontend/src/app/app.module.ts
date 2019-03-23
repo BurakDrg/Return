@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
 import { CategoryComponent } from './category/category.component';
-import { CartComponent } from './cart/cart.component';
 import { CourierComponent } from './courier/courier.component';
 import { ProductService } from './product/product.service';
 import { CourierService } from './courier/courier.service';
@@ -17,15 +16,14 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 // tslint:disable-next-line:max-line-length
 import { MatTableModule,MatInputModule,MatPaginatorModule,MatSortModule,MatFormFieldModule,MatSelectModule,MatButtonModule,MatCheckboxModule,MatBadgeModule ,MatMenuModule,MatIconModule,MatListModule,MatDividerModule} from  '@angular/material';
-import { LoginComponent } from './login/login.component';
-import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { AddProductComponent } from './product/add-product/add-product.component';
 import { ShoppingComponent } from './shopping/shopping.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import {AngularFireAuthModule} from '@angular/fire/auth';
-import {AngularFireDatabaseModule} from '@angular/fire/database'
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -35,10 +33,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database'
       AppComponent,
       ProductComponent,
       CategoryComponent,
-      CartComponent,
       ShoppingComponent,
-      LoginComponent,
-      AdminComponent,
       HomeComponent,
       CourierComponent,
       AddProductComponent
@@ -53,6 +48,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database'
       MatPaginatorModule,
       MatSortModule,
       MatInputModule,
+      MatDialogModule,
       MatButtonModule,
       MatCheckboxModule,
       MatBadgeModule,

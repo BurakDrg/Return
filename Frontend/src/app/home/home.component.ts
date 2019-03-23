@@ -155,9 +155,9 @@ ngOnInit(){
       .catch(function(error) {
         console.log(error);
       });
-    console.log(
+    /*console.log(
       "Currently Logged in: " + this.afAuth.auth.currentUser.email.toString()
-    );
+    );*/
   }
   logout() {
     this.afAuth.auth.signOut();

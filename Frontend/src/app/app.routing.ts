@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ProductComponent } from './product/product.component';
-import { LoginComponent } from './login/login.component';
-import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { CourierComponent } from './courier/courier.component';
 import { AddProductComponent } from './product/add-product/add-product.component';
@@ -34,16 +32,6 @@ export const routes: Routes = [
     {
       path: 'user',
       component: ShoppingComponent,
-      pathMatch: 'full',
-    },
-    {
-      path: 'login',
-      component: LoginComponent,
-      pathMatch: 'full',
-    },
-    {
-      path: 'admin',
-      component: AdminComponent,
       pathMatch: 'full',
     },
     // {

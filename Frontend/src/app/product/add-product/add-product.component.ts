@@ -1,38 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { Product } from '../product';
 import { ProductService } from '../product.service';
 
 @Component({
-  selector: 'app-add-product',
-  templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.scss']
+  templateUrl: './add-product.component.html'
 })
-export class AddProductComponent implements OnInit {
+export class AddProductComponent {
 
-  
-  angForm: FormGroup;
-  constructor(private fb: FormBuilder, private router: Router, private productService: ProductService) {
-    this.createForm();
-   }
+  product: Product = new Product();
 
-  ngOnInit() {
-    }
+  constructor(private router: Router, private productService: ProductService) {
 
-    createForm() {
-      this.angForm = this.fb.group({
-        name: ['', Validators.required ],
-        stock: ['', Validators.required ],
-        price: ['', Validators.required ]
-      });
-    }
+  }
 
+  createProduct(): void {
+    this.productService.createProduct(this.product)
+        .subscribe( data => {
+          alert('Product created successfully.');
+        });
 
-  onSubmit() {
-    this.productService.createProduct(this.angForm.value)
-      .subscribe( data => {
-        this.router.navigate(['product']);
-      });
   }
 
 }

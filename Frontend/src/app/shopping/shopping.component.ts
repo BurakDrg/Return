@@ -87,7 +87,7 @@ export class ShoppingComponent implements OnInit {
     await this.productService.getProducts()
     .subscribe( data => {
       this.products = data;
-      for(let i = 0 ; i<this.products.length-1 ; i++){
+      for(let i = 0 ; i<this.products.length; i++){
         var tempProduct:shoppingProduct = new shoppingProduct();
         tempProduct.name = this.products[i].name;
         tempProduct.price = this.products[i].price;
