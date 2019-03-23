@@ -9,7 +9,7 @@ export class ProductService {
   baseURL: string;
 
   constructor(private http: HttpClient) {
-    this.baseURL = 'http://192.168.1.107:8080/api/product';
+    this.baseURL = 'http://localhost:8080/api/product';
   }
 
 
