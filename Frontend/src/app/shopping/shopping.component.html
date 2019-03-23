@@ -77,10 +77,20 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="selection.toggle(row)"></tr>
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        (click)="selection.toggle(row)"
+      ></tr>
+
     </table>
+    <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons>
+    </mat-paginator>
   </div>
+
+
 
   <mat-divider></mat-divider>
   <h2>
@@ -139,20 +149,29 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="selection.toggle(row)"></tr>
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        (click)="selection.toggle(row)"
+      ></tr>
     </table>
+    <mat-paginator
+    [pageSizeOptions]="[10, 20, 40]"
+    showFirstLastButtons
+  ></mat-paginator>
   </div>
 
 
   <mat-divider></mat-divider>
+
   <h2>
     Total Price: {{ myCartPrice }} , Possible Cheapest Price:
     {{ improvedCartPossibleCheapestPrice }}
   </h2>
-  <h2 *ngIf="cheapestMarket">Cheapest Market: {{ cheapestMarket.name }} <button mat-raised-button color="primary"
-      (click)="checkout()">Checkout</button>
+  <h2 *ngIf="cheapestMarket">Cheapest Market: {{ cheapestMarket.name }} 
   </h2>
+  <button mat-raised-button color="primary"
+      (click)="checkout()">Checkout</button>
 
 
 

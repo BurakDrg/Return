@@ -73,9 +73,18 @@ export class ShoppingComponent implements OnInit {
 
   // Method which will be inited at startup
   ngOnInit() {
+    this.dataSource.paginator = this.paginator; //Enable pagination of Product List
+    this.myCartDataSource.paginator = this.paginator; // Enable pagination of My Cart
     this.generateTestData(); //Generate Test Data
+    this.getProductsFromDatabase(); // Get Product Data from PostgreSql
+    
+    this.findMe(); //Get User Location
+    this.populateOrderedProduct(); //Make OrderedProduct List, Remove duplicate products.
+  }
+
+  async getProductsFromDatabase(){
     this.testMarket =  new shoppingMarket();
-    this.productService.getProducts()
+    await this.productService.getProducts()
     .subscribe( data => {
       this.products = data;
       for(let i = 0 ; i<this.products.length-1 ; i++){
@@ -90,8 +99,9 @@ export class ShoppingComponent implements OnInit {
       this.populateOrderedProduct(); //Make OrderedProduct List, Remove duplicate products.
 
     });
-    this.findMe(); //Get User Location
-    this.populateOrderedProduct(); //Make OrderedProduct List, Remove duplicate products.
+      this.dataSource._updateChangeSubscription();
+
+
   }
 
   getProducts() {
@@ -138,10 +148,18 @@ export class ShoppingComponent implements OnInit {
   }
   //Checkout sequence
   checkout() {
-    for (let i = 0; i < this.myCart.length; i++) {
-      this.removeFromCart(this.myCart[i]);
+    
+    for (var j = 0; j < this.myCart.length; j++) {
+      this.removeFromCart(this.myCart[j]);
     }
+    for (var j = 0; j < this.myCart.length; j++) {
+      this.removeFromCart(this.myCart[j]);
+    }
+    this.calculateMyCartPrice();
+    this.calculateCheapestMarket();
+    this.myCartDataSource._updateChangeSubscription();
   }
+
 
   calculateCheapestMarket() {
     var matchedItemCount = 0;
