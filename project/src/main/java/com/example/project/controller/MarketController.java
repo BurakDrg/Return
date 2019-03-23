@@ -25,6 +25,7 @@ import io.swagger.annotations.ApiParam;
 import com.example.project.model.Market;
 import com.example.project.repository.MarketRepository;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 public class MarketController {

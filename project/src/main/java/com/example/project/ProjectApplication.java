@@ -1,8 +1,9 @@
 package com.example.project;
 
 import com.example.project.repository.UserRepository;
+import com.example.project.repository.OrderRepository;
 import com.example.project.repository.ProductRepository;
-
+import com.example.project.model.Order;
 import com.example.project.model.Product;
 import com.example.project.model.User;
 
@@ -25,6 +26,9 @@ public class ProjectApplication  implements CommandLineRunner{
 
 	@Autowired
 	UserRepository userRepository;
+
+	@Autowired
+	OrderRepository orderRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectApplication.class, args);
@@ -82,10 +86,18 @@ public class ProjectApplication  implements CommandLineRunner{
 		User admin=new User();
 		admin.Name("Admin");
 		admin.Address("1.cad 1.sok. No:1 Ankara");
+		admin.Email("admin@admin.com");
 		admin.Latitude(35.1);
 		admin.Longitude(35.1);
 
 		userRepository.save(admin);
+
+		Order order = new Order();
+		order.Name("name");
+		order.Address("address");
+		order.Price(26.1);
+
+		orderRepository.save(order);
 	}
 
 }

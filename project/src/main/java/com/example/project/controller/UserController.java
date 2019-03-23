@@ -32,7 +32,7 @@ public class UserController {
 
     private final Logger log = LoggerFactory.getLogger(UserController.class);
 
-    private static final String ENTITY_NAME = "departmentController";  
+    private static final String ENTITY_NAME = "UserController";  
 
     @Autowired
     UserRepository userRepository;
@@ -43,27 +43,23 @@ public class UserController {
 
     @GetMapping("/user")
     public ResponseEntity<List<User>> getAllUsers(@ApiParam Pageable pageable) {
-    	//DeviceCriteria criteria,@ApiParam Pageable pageable
-    	
+    	log.debug("REST request to get Users  {}");
     	Page<User> page = userRepository.findAll(pageable);
-        //log.debug("REST request to get Devices by criteria: {}", criteria);
-        //Page<Device> page = deviceQueryService.findByCriteria(criteria, pageable);
-        //HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/devices");
         return new ResponseEntity<>(page.getContent(), null, HttpStatus.OK);
     }
 
     @GetMapping("/user/{id}")
     public ResponseEntity<User> getConfigByUserId(@PathVariable Long id) {
-        log.debug("REST request to get Device : {}", id);
+        log.debug("REST request to get User : {}", id);
         User user = userRepository.findById(id).get();
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
     @PostMapping("/user")
     public ResponseEntity<User> createUser(@Valid @RequestBody User user) throws Exception {
-        log.debug("REST request to save Device : {}", user);
+        log.debug("REST request to save User : {}", user);
         if (user.getId() != null) {
-            throw new Exception("A new device cannot already have an ID");
+            throw new Exception("A new user cannot already have an ID");
         }
         User result = userRepository.save(user);
         return ResponseEntity.ok(result);
@@ -71,7 +67,7 @@ public class UserController {
 
     @PutMapping("/user")
     public ResponseEntity<User> updateUser(@Valid @RequestBody User user) throws Exception {
-        log.debug("REST request to update Device : {}", user);
+        log.debug("REST request to update User : {}", user);
         if (user.getId() == null) {
             return createUser(user);
         }
@@ -81,7 +77,7 @@ public class UserController {
     
     @DeleteMapping("/user/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        log.debug("REST request to delete Device : {}", id);
+        log.debug("REST request to delete User : {}", id);
         userRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }

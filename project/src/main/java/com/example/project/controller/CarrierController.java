@@ -25,6 +25,7 @@ import io.swagger.annotations.ApiParam;
 import com.example.project.model.Carrier;
 import com.example.project.repository.CarrierRepository;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 public class CarrierController {

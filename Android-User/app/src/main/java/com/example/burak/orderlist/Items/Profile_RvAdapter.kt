@@ -34,7 +34,7 @@ class Profile_RvAdapter(private val items: MutableList<String>) : RecyclerView.A
     }
 
     class VH(parent: ViewGroup) : RecyclerView.ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.shoppingcart_items, parent, false)) {
+            LayoutInflater.from(parent.context).inflate(R.layout.profile_items, parent, false)) {
 
         fun bind(name: String) = with(itemView) {
             val ff:Float = 15.toFloat()

@@ -24,6 +24,9 @@ public class User {
     @Column(name = "Address")
     private String address;
 
+    @Column(name = "Email")
+    private String email;
+
     @Column(name = "Latitude")
     private Double latitude;
 
@@ -57,6 +60,19 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+    
+    public User Email(String email){
+		this.email = email;
+		return this;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
     public User Address(String address){

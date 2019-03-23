@@ -25,11 +25,12 @@ import io.swagger.annotations.ApiParam;
 import com.example.project.model.Order;
 import com.example.project.repository.OrderRepository;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 public class OrderController {
 
-    private final Logger log = LoggerFactory.getLogger(UserController.class);
+    private final Logger log = LoggerFactory.getLogger(OrderController.class);
 
     private static final String ENTITY_NAME = "orderController";  
 
