@@ -7,8 +7,6 @@ import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
 import { CategoryComponent } from './category/category.component';
-import { CartComponent } from './cart/cart.component';
-import { DenemeComponent } from './deneme/deneme.component';
 import { CourierComponent } from './courier/courier.component';
 import { ProductService } from './product/product.service';
 import { CourierService } from './courier/courier.service';
@@ -17,12 +15,17 @@ import { AgmCoreModule } from '@agm/core';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 // tslint:disable-next-line:max-line-length
-import { MatTableModule, MatPaginatorModule, MatSortModule, MatFormFieldModule, MatSelectModule, MatButtonModule, MatCheckboxModule, MatBadgeModule , MatMenuModule, MatIconModule, MatListModule, MatDividerModule} from '@angular/material';
-import { LoginComponent } from './login/login.component';
-import { AdminComponent } from './admin/admin.component';
+import { MatTableModule,MatInputModule,MatPaginatorModule,MatSortModule,MatFormFieldModule,MatSelectModule,MatButtonModule,MatCheckboxModule,MatBadgeModule ,MatMenuModule,MatIconModule,MatListModule,MatDividerModule} from  '@angular/material';
 import { HomeComponent } from './home/home.component';
-import {MatDialogModule} from '@angular/material/dialog';
 import { AddProductComponent } from './product/add-product/add-product.component';
+import { ShoppingComponent } from './shopping/shopping.component';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {MatDialogModule} from '@angular/material/dialog';
+
+
 
 
 @NgModule({
@@ -30,10 +33,7 @@ import { AddProductComponent } from './product/add-product/add-product.component
       AppComponent,
       ProductComponent,
       CategoryComponent,
-      CartComponent,
-      DenemeComponent,
-      LoginComponent,
-      AdminComponent,
+      ShoppingComponent,
       HomeComponent,
       CourierComponent,
       AddProductComponent
@@ -41,9 +41,14 @@ import { AddProductComponent } from './product/add-product/add-product.component
    imports: [
       FormsModule,
       BrowserAnimationsModule,
+      AngularFireModule.initializeApp(environment.firebase),
+      AngularFireAuthModule,
+      AngularFireDatabaseModule,
       MatTableModule,
       MatPaginatorModule,
       MatSortModule,
+      MatInputModule,
+      MatDialogModule,
       MatButtonModule,
       MatCheckboxModule,
       MatBadgeModule,
@@ -52,10 +57,9 @@ import { AddProductComponent } from './product/add-product/add-product.component
       MatListModule,
       MatDividerModule,
       MatSelectModule,
-      MatDialogModule,
       MatFormFieldModule,
       AgmCoreModule.forRoot({
-         apiKey: 'AIzaSyDrY6e0G3NUnCiSNIypl93xou3Z-SR2vek'// PUT MAPS API KEY HERE
+         apiKey: ''// PUT MAPS API KEY HERE
       }),
       BrowserModule,
       AppRoutingModule,
@@ -65,7 +69,6 @@ import { AddProductComponent } from './product/add-product/add-product.component
    providers: [ProductService],
    bootstrap: [
       AppComponent
-   ],
-   entryComponents: [ProductComponent]
+   ]
 })
 export class AppModule { }
