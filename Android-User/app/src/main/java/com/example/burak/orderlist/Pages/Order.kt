@@ -125,6 +125,7 @@ class Order : Fragment(), View.OnClickListener, TextView.OnEditorActionListener{
                 }
             }
 
+
             return " "
         }
     }
@@ -158,4 +159,3 @@ class Order : Fragment(), View.OnClickListener, TextView.OnEditorActionListener{
     }
 
 }
-class Product(val name: String, val price: String)

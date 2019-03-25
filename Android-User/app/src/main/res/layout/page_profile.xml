@@ -60,6 +60,7 @@
                 android:layout_gravity="bottom"/>
 
             <TextView
+                android:id="@+id/your_address"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Your addresses"
@@ -91,7 +92,7 @@
                     android:layout_marginTop="5dp"
                     android:textSize="15dp"
                     android:layout_marginLeft="25dp"
-                    android:text="Add new address"
+                    android:text=""
                     android:textColor="@color/colorPrimaryDark"/>
             </LinearLayout>
         </ScrollView>

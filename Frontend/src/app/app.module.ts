@@ -7,14 +7,25 @@ import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
 import { CategoryComponent } from './category/category.component';
-import { CartComponent } from './cart/cart.component';
-import { DenemeComponent } from './deneme/deneme.component';
+import { CourierComponent } from './courier/courier.component';
 import { ProductService } from './product/product.service';
-import {FormsModule} from '@angular/forms'
+import { CourierService } from './courier/courier.service';
+import { FormsModule, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { AgmCoreModule } from '@agm/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
-import { MatTableModule,MatPaginatorModule,MatSortModule,MatFormFieldModule,MatSelectModule,MatButtonModule,MatCheckboxModule,MatBadgeModule ,MatMenuModule,MatIconModule,MatListModule,MatDividerModule} from  '@angular/material';
+// tslint:disable-next-line:max-line-length
+import { MatTableModule,MatInputModule,MatPaginatorModule,MatSortModule,MatFormFieldModule,MatSelectModule,MatButtonModule,MatCheckboxModule,MatBadgeModule ,MatMenuModule,MatIconModule,MatListModule,MatDividerModule} from  '@angular/material';
+import { HomeComponent } from './home/home.component';
+import { AddProductComponent } from './product/add-product/add-product.component';
+import { ShoppingComponent } from './shopping/shopping.component';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {MatDialogModule} from '@angular/material/dialog';
+
+
 
 
 @NgModule({
@@ -22,15 +33,22 @@ import { MatTableModule,MatPaginatorModule,MatSortModule,MatFormFieldModule,MatS
       AppComponent,
       ProductComponent,
       CategoryComponent,
-      CartComponent,
-      DenemeComponent
+      ShoppingComponent,
+      HomeComponent,
+      CourierComponent,
+      AddProductComponent
    ],
    imports: [
       FormsModule,
       BrowserAnimationsModule,
+      AngularFireModule.initializeApp(environment.firebase),
+      AngularFireAuthModule,
+      AngularFireDatabaseModule,
       MatTableModule,
       MatPaginatorModule,
       MatSortModule,
+      MatInputModule,
+      MatDialogModule,
       MatButtonModule,
       MatCheckboxModule,
       MatBadgeModule,
@@ -45,9 +63,10 @@ import { MatTableModule,MatPaginatorModule,MatSortModule,MatFormFieldModule,MatS
       }),
       BrowserModule,
       AppRoutingModule,
-      HttpClientModule
+      HttpClientModule,
+      ReactiveFormsModule
    ],
-   providers: [],
+   providers: [ProductService],
    bootstrap: [
       AppComponent
    ]

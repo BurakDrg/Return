@@ -19,14 +19,14 @@
                 android:layout_height="match_parent"/>
 
             <Button
-                android:id="@+id/addItem"
+                android:id="@+id/orderItem"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:background="@color/colorGreen"
                 android:textColor="@color/colorWhite"
-                android:text="Order Your List"
+                android:text="Order"
                 android:textSize="20dp"
                 android:layout_marginTop="25dp"
                 android:layout_gravity="center"/>
